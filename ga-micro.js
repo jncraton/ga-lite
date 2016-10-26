@@ -3,7 +3,7 @@
 
     var eventBuilder = function(event, params) {
         return function() {
-            url = 
+            var url = 
               '//google-analytics.com/collect?' +
               '&tid={your_UA}' +
               'cid=' + (localStorage.uid = localStorage.uid || Math.random() + '.' + Math.random()) +
