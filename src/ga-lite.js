@@ -7,9 +7,7 @@
             'cid=' + (localStorage.uid = localStorage.uid || Math.random() + '.' + Math.random()) +
             '&v=1' +
             '&tid={your_UA}' +
-            '&dl=' + encodeURIComponent(location) +
-            '&ul=en-us' +
-            '&de=UTF-8'
+            '&dl=' + encodeURIComponent(location)
         );
 
         var getOptionalStr = function(values) {
