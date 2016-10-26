@@ -13,7 +13,7 @@
               '&dr=' + encodeURIComponent(document.referrer) +
               params +
               '&t=' + encodeURIComponent(event) +
-              '&z=' + Math.random()
+              '&z=' + Math_random()
 
             if (navigator && navigator.sendBeacon) {
                 navigator.sendBeacon(url);
