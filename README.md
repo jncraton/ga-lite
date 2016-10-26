@@ -9,7 +9,7 @@ This project is a non-official client for [Google Analytics API][ga-api].
 make
 ```
 
-Once the compilation has ended, a minfied out will be in /dist.
+Once the compilation has ended, a minfied file will be created.
 
 ## Features
 
