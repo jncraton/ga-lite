@@ -1,4 +1,4 @@
-(function(window, localStorage, navigator, document, encodeURIComponent) {
+(function(window, localStorage, navigator, document, encodeURIComponent, Math_random) {
     var pageLoadedTimestamp = new Date().getTime();
 
     var eventBuilder = function(event, params) {
@@ -6,8 +6,8 @@
             var url = 
               '//google-analytics.com/collect?' +
               '&tid={your_UA}' +
-              'cid=' + (localStorage.uid = localStorage.uid || Math.random() + '.' + Math.random()) +
               '&v=1' +
+              '&cid=' + (localStorage.uid = localStorage.uid || Math_random() + '.' + Math_random()) +
               '&dl=' + encodeURIComponent(location) +
               '&dt=' + encodeURIComponent(document.title) +
               '&dr=' + encodeURIComponent(document.referrer) +
@@ -39,4 +39,4 @@
             '&utc=JS Dependencies&utv=unload&utt='+ (new Date().getTime() - pageLoadedTimestamp)
         )
     );
-})(window, localStorage, navigator, document, encodeURIComponent);
+})(window, localStorage, navigator, document, encodeURIComponent, Math.random);
