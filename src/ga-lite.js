@@ -2,7 +2,6 @@
     window.addEventListener('load', function() {
         var pageLoadedTimestamp = new Date().getTime();
 
-        var req = new XMLHttpRequest();
         var urlBase = (
             'https://www.google-analytics.com/collect?' +
             'cid=' + (localStorage.uid = localStorage.uid || Math.random() + '.' + Math.random()) +
@@ -42,15 +41,8 @@
             if (navigator.sendBeacon) {
                 navigator.sendBeacon(url);
             } else {
-                try {
-                    req.open('GET', url, false);
-                    req.send();
-                } catch (e) {
-                    // IE9 throws an error with cross-site XMLHttpRequest so
-                    // we fall back to simple image request
-                    var i = new Image();
-                    i.src = url;
-                }
+                var i = new Image();
+                i.src = url;
             }
         };
 
