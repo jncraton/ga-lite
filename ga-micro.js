@@ -1,23 +1,21 @@
 (function(window, localStorage, navigator, document, encodeURIComponent) {
     var pageLoadedTimestamp = new Date().getTime();
 
-    var urlBase = (
-        '//google-analytics.com/collect?' +
-        'cid=' + (localStorage.uid = localStorage.uid || Math.random() + '.' + Math.random()) +
-        '&v=1' +
-        '&tid={your_UA}' +
-        '&dl=' + encodeURIComponent(location) +
-        '&dt=' + encodeURIComponent(document.title) +
-        '&dr=' + encodeURIComponent(document.referrer)
-    );
-
     var eventBuilder = function(event, params) {
         return function() {
-            url = urlBase + params +
-                '&t=' + encodeURIComponent(event) +
-                '&z=' + new Date().getTime()
+            url = 
+              '//google-analytics.com/collect?' +
+              '&tid={your_UA}' +
+              'cid=' + (localStorage.uid = localStorage.uid || Math.random() + '.' + Math.random()) +
+              '&v=1' +
+              '&dl=' + encodeURIComponent(location) +
+              '&dt=' + encodeURIComponent(document.title) +
+              '&dr=' + encodeURIComponent(document.referrer) +
+              params +
+              '&t=' + encodeURIComponent(event) +
+              '&z=' + new Date().getTime()
 
-            if (navigator.sendBeacon) {
+            if (navigator && navigator.sendBeacon) {
                 navigator.sendBeacon(url);
             } else {
                 var i = new Image();
