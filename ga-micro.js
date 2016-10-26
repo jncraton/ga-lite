@@ -1,7 +1,7 @@
 (function(window, localStorage, navigator, document, encodeURIComponent, Math_random) {
     var pageLoadedTimestamp = new Date().getTime();
 
-    var eventBuilder = function(event, params) {
+    var eventBuilder = function(params) {
         return function() {
             var url = 
               '//google-analytics.com/collect?' +
@@ -12,7 +12,6 @@
               '&dt=' + encodeURIComponent(document.title) +
               '&dr=' + encodeURIComponent(document.referrer) +
               params +
-              '&t=' + encodeURIComponent(event) +
               '&z=' + Math_random()
 
             if (navigator && navigator.sendBeacon) {
@@ -25,7 +24,7 @@
     };
 
     // Deplay the page load event by 100ms
-    setTimeout(eventBuilder('pageview', ''), 100);
+    setTimeout(eventBuilder('&t=pageview'), 100);
 
     /**
      * Note:
@@ -35,8 +34,7 @@
     window.addEventListener(
         'unload',
         eventBuilder(
-            'timing',
-            '&utc=JS Dependencies&utv=unload&utt='+ (new Date().getTime() - pageLoadedTimestamp)
+            '&t=timing&utc=JS Dependencies&utv=unload&utt='+ (new Date().getTime() - pageLoadedTimestamp)
         )
     );
 })(window, localStorage, navigator, document, encodeURIComponent, Math.random);
