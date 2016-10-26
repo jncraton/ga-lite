@@ -2,13 +2,12 @@
     window.addEventListener('load', function() {
         var pageLoadedTimestamp = new Date().getTime();
 
-        window.galite = window.galite || {};
         var req = new XMLHttpRequest();
         var urlBase = (
             'https://www.google-analytics.com/collect?' +
             'cid=' + (localStorage.uid = localStorage.uid || Math.random() + '.' + Math.random()) +
             '&v=1' +
-            '&tid=' + galite.UA +
+            '&tid={your_UA}' +
             '&dl=' + encodeURIComponent(location) +
             '&ul=en-us' +
             '&de=UTF-8'
@@ -61,12 +60,9 @@
                 paramsStr = '&' + key + '=' + encodeURIComponent(params[key]);
             }
             return function() {
-                var anonymizeIp = galite.anonymizeIp ? '&aip=1' : '';
-                
                 sendTo(
                     urlBase +
                     paramsStr +
-                    anonymizeIp +
                     '&t=' + encodeURIComponent(event) +
                     '&z=' + new Date().getTime()
                 );
