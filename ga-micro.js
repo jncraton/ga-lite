@@ -9,8 +9,8 @@
     '&dr=' + encodeURIComponent(document.referrer) +
     '&z=' + Math_random()
 
-  if (navigator && navigator.sendBeacon) {
-      navigator.sendBeacon(url);
+  if (Math_random = (navigator && navigator.sendBeacon)) {
+      Math_random(url);
   } else {
       var i = new Image();
       i.src = url;
