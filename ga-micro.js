@@ -6,7 +6,6 @@
           var params =  't=timing&utc=JS Dependencies&utv=unload&utt='+ (new Date().getTime() - pageLoadedTimestamp)
         } else {
           var params = 'pageview'
-          pageLoadedTimestamp = new Date().getTime();
         }
         
         var url = 
@@ -20,12 +19,15 @@
           '&dr=' + encodeURIComponent(document.referrer) +
           '&z=' + Math_random()
 
+        pageLoadedTimestamp = new Date().getTime();
+
         if (navigator && navigator.sendBeacon) {
             navigator.sendBeacon(url);
         } else {
             var i = new Image();
             i.src = url;
         }
+
     };
 
     /**
